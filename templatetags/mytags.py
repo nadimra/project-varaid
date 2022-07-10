@@ -11,7 +11,7 @@ def media_url():
 
 @register.simple_tag
 def get_num_highlights():
-    path = '.'+MEDIA_URL+'highlights/'
+    path = './'+MEDIA_URL+'highlights/'
     fileList = os.listdir(path) 
     return range(len(fileList))
 
