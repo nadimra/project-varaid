@@ -1,0 +1,10 @@
+asgiref==3.5.2
+backports.zoneinfo==0.2.1
+Django==4.0.5
+numpy==1.22.3
+opencv-python==4.5.5.64
+Pillow==9.1.1
+PySide2==5.15.2.1
+shiboken2==5.15.2.1
+sqlparse==0.4.2
+tzdata==2022.1

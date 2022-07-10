@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load mytags %}
+{% load static %}
+
+{% block title %}
+    Upload Broadcast
+{% endblock %}
+
+{% block content %}
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static '/css/highlight.css' %}" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+
+
+<h2 class="mb-4">&#128204; Highlight #{{highlightId}}</h2>
+
+{% if highlightOut %}
+
+<section>
+  <div class="container">
+    <div id="video_player">
+
+
+      <video src="{% media_url %}highlights/highlight_{{highlightId}}/highlight_{{highlightId}}.mp4" id="main-video"></video>
+      <div class="progressAreaTime"></div>
+        <div class="controls">
+
+          <div class="progress-area">
+            <div class="progress-bar">
+              <span></span>
+            </div>
+          </div>
+          <div class="controls-list">
+
+          <div class="controls-left">
+
+            <span class="icon">
+              <i class="material-icons play_pause">play_arrow</i>
+            </span>
+
+            <div class="timer">
+              <span class="current">0:00</span> /
+              <span class="duration">0:00</span>
+            </div>
+          </div>
+
+          <div class="controls-right">
+            <span class="icon">
+              <i class="material-icons auto-play"></i>
+            </span>
+
+
+            <span class="icon">
+              <i class="material-icons settingsBtn">settings</i>
+            </span>
+
+            <span class="icon">
+              <i class="material-icons fullscreen">fullscreen</i>
+            </span>
+        </div>
+        </div>
+      </div>
+      
+      <div id="settings">
+        <div class="playback">
+          <span>Playback Speed</span>
+          <ul>
+            <li data-speed="0.25">0.25</li>
+            <li data-speed="0.5">0.5</li>
+            <li data-speed="0.75">0.75</li>
+            <li data-speed="1" class="active">Normal</li>
+            <li data-speed="1.25">1.25</li>
+            <li data-speed="1.5">1.5</li>
+            <li data-speed="1.75">1.75</li>
+            <li data-speed="2">2</li>
+          </ul>
+        </div>
+      </div>
+  </div>
+</section>
+
+{% endif %}
+
+
+<script src="{% static '/js/highlight.js' %}"></script>
+
+{% endblock %}

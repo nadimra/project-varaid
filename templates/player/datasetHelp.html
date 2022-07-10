@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load mytags %}
+{% load static %}
+
+{% block title %}
+    Upload Broadcast
+{% endblock %}
+
+{% block content %}
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static '/css/video.css' %}" type="text/css">
+</head>
+
+
+<h2 class="mb-4">&#9917; Dataset Help</h2>
+
+{% has_uploaded_broadcast as broadcast %}
+{% if broadcast %}
+
+<section>
+  <div class="container">
+    <div id="video_player">
+
+      <div id="crop-video">
+          <span class="icon" id="drag-element">
+            <i class="material-icons drag indicator">drag_indicator</i>
+          </span>
+      </div>
+
+      <video src="{% get_uploaded_broadcast %}" id="main-video"></video>
+      <div class="progressAreaTime"></div>
+        <div class="controls">
+
+          <div class="progress-area">
+            <div class="progress-bar">
+              <span></span>
+            </div>
+          </div>
+          <div class="controls-list">
+
+          <div class="controls-left">
+            <span class="icon">
+              <i class="material-icons fast-rewind">replay_10</i>
+            </span>
+
+            <span class="icon">
+              <i class="material-icons play_pause">play_arrow</i>
+            </span>
+
+            <span class="icon">
+              <i class="material-icons fast-forward">forward_10</i>
+            </span>
+
+            <!-- <span class="icon">
+              <i class="material-icons volume">volume_up</i>
+              <input type="range" min="0" max="100" class="volume_range" />
+            </span> -->
+
+            <div class="timer">
+              <span class="current">0:00</span> /
+              <span class="duration">0:00</span>
+            </div>
+          </div>
+
+          <div class="controls-right">
+            <span class="icon">
+              <i class="material-icons auto-play"></i>
+            </span>
+
+            <span class="icon">
+              <i class="material-icons editBtn">camera</i>
+            </span>
+
+            <span class="icon">
+              <i class="material-icons cropBtn">crop</i>
+            </span>
+
+            <span class="icon">
+              <i class="material-icons settingsBtn">settings</i>
+            </span>
+
+            <span class="icon">
+              <i class="material-icons fullscreen">fullscreen</i>
+            </span>
+        </div>
+        </div>
+      </div>
+
+      <div id="crops">
+        <div class="sizes">
+          <span>Crop Size</span>
+          <ul>
+            <li data-size="25">0.25</li>
+            <li data-size="50">0.5</li>
+            <li data-size="75">0.75</li>
+            <li data-size="100" class="active">1</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div id="settings">
+        <div class="playback">
+          <span>Playback Speed</span>
+          <ul>
+            <li data-speed="0.25">0.25</li>
+            <li data-speed="0.5">0.5</li>
+            <li data-speed="0.75">0.75</li>
+            <li data-speed="1" class="active">Normal</li>
+            <li data-speed="1.25">1.25</li>
+            <li data-speed="1.5">1.5</li>
+            <li data-speed="1.75">1.75</li>
+            <li data-speed="2">2</li>
+          </ul>
+        </div>
+      </div>
+  </div>
+</section>
+{% else %}
+
+<div class="jumbotron">
+  <h1 class="display-4">Oops!</h1>
+  <p class="lead">You have to upload a football broadcast first!</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+</div>
+
+{% endif %}
+
+
+<div class="modal fade" id="cropModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">&#9940; There seems to be a problem...</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Please make sure your cropped video is within the main broadcast.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="{% static '/js/datasetHelp.js' %}"></script>
+
+{% endblock %}

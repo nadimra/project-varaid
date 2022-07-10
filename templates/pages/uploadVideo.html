@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+    Upload Broadcast
+{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">&#128250; Upload Video</h2>
+
+<h4 class="mb-1">Tutorial</h4>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" class="form-control-file mb-3" name="myfile">
+    <button type="submit" class="btn btn-success btn-sm mb-3">Upload</button>
+</form>
+
+{% if uploaded_file_url %}
+<p>File uploaded. Do you wish to go to the <a href="{% url 'player:main' %}">main broadcast?</a></p>
+{% endif %}
+
+{% if fail %}
+<p>File upload failed. Please ensure you meet the requirements.</a></p>
+{% endif %}
+
+
+{% endblock %}

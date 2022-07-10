@@ -1,0 +1,97 @@
+{% load static %}
+{% load mytags %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>VarAid</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="{% static '/css/sidebar.css' %}" type="text/css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>   
+	<script src="https://kit.fontawesome.com/470f92539c.js" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	          <i class="fa fa-bars"></i>
+	          <span class="sr-only">Toggle Menu</span>
+	        </button>
+        </div>
+				<div class="p-4">
+		  		<h1><a href="{% url 'pages:index' %}" class="logo">VarAid<span>Making decisions easier.</span></a></h1>
+	        <ul class="list-unstyled components mb-5">
+
+	          <li class="{% if request.path|get_current_page == 0 %}active{% endif %}">
+	            <a href="{% url 'player:main' %}"><span class="fas fa-solid fa-play mr-3"> </span> Main Broadcast</a>
+	          </li>
+
+			  {% get_num_highlights as num_highlights %}
+			  {% for highlight in num_highlights %}
+
+	          <li class="{% if request.path|get_current_page == forloop.counter %}active{% endif %}">
+	              <a href="{% url 'player:viewHighlight' forloop.counter %}"><span class="fas fa-solid fa-highlighter mr-3"></span> Highlight #{{forloop.counter}}</a>
+	          </li>
+			  {% endfor %}
+	        </ul>
+
+	        <div class="mb-3">
+				<h3 class="h6 mb-3">Upload Broadcast</h3>
+				<a class="btn btn-success btn-sm btn-block" href="{% url 'pages:uploadVideo' %}">Upload</a>
+			</div>
+
+			<div class="mb-5">
+				<h3 class="h6 mb-3">Clear Storage</h3>
+				<button type="button" class="btn btn-warning btn-sm btn-block" data-toggle="modal" data-target="#clearStorage">Clear</button>
+			</div>
+
+	        <div class="footer">
+	        </div>
+
+	      </div>
+    	</nav>
+
+		<!-- Page Content  -->
+		<div id="content" class="p-4 p-md-5 pt-5">
+		{% block content %}{% endblock %}
+		</div>
+
+		<!-- Modal Forms  -->
+		<!-- Clear -->
+		<div class="modal fade" id="clearStorage" tabindex="-1" role="dialog" aria-labelledby="clearStorageLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="clearStorageLabel">&#128686; Are you sure?</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+				Selecting to clear storage will mean you will lose all your highlights.
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-warning" data-href="{% url 'pages:clearStorage' %}" id="clearStorageBtn">Clear Storage</button>
+				</div>
+			</div>
+			</div>
+		</div>
+
+	</div>
+
+    <script src="{% static '/js/sidebar.js' %}"></script>
+	<script src="{% static '/js/utils.js' %}"></script>
+
+  </body>
+</html>
