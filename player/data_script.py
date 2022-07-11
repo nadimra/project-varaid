@@ -77,13 +77,12 @@ def combine_frames(pathIn, pathOut, pathOutTemp,fps):
         # inserting the frames into an image array
         frame_array.append(img)
     out = cv2.VideoWriter(pathOut, cv2.VideoWriter_fourcc(*'h264'), fps, size)
-    #os.system("ffmpeg -i {} -vcodec libx264 {}".format(pathOutTemp,pathOut))
-    os.system("ls")
-
     for i in range(len(frame_array)):
         # writing to a image array
         out.write(frame_array[i])
     out.release()
+    os.system("ffmpeg -i {} -vcodec libx264 {}".format(pathOutTemp,pathOut))
+    
 
 def check_video_size(path):
     required_height = 560
