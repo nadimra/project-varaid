@@ -30,11 +30,12 @@ def extractHighlight(request):
         highlightPath = '.'+MEDIA_URL+'highlights/'+highlightName
         highlightPathFrames = highlightPath+'/frames'
         highlightOut = highlightPath+'/'+highlightName +'.mp4'
+        highlightOutTemp = highlightPath+'/'+highlightName +'2.mp4'
 
         # Save files
         data_script.mkdirs(highlightPathFrames)
         data_script.extract_frames_specific(videoFile,highlightPathFrames,frameNum,240,croppedImg)
-        data_script.combine_frames(highlightPathFrames,highlightOut,60)
+        data_script.combine_frames(highlightPathFrames,highlightOut,highlightOutTemp,60)
         return HttpResponse(numHighlights) # Sending an success response
     else:
         return HttpResponse("Request method is not a GET")

@@ -45,14 +45,14 @@ def get_uploaded_broadcast_glob():
     return fileList[0]
 
 
-@register.simple_tag
-def get_highlight_path():
-    highlight_id = 2
-    highlightName = 'highlight_'+str(highlight_id)
-    highlightPath = '.'+MEDIA_URL+'highlights/'+highlightName
-    highlightOut = highlightPath+'/'+highlightName +'.mp4'
-    fileList = glob.glob(highlightOut)
-    return fileList[0]
+# @register.simple_tag
+# def get_highlight_path():
+#     highlight_id = 2
+#     highlightName = 'highlight_'+str(highlight_id)
+#     highlightPath = '.'+MEDIA_URL+'highlights/'+highlightName
+#     highlightOut = highlightPath+'/'+highlightName +'.mp4'
+#     fileList = glob.glob(highlightOut)
+#     return fileList[0]
 
 @register.filter
 def get_current_page(path):
