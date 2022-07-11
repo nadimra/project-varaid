@@ -78,6 +78,7 @@ def combine_frames(pathIn, pathOut, pathOutTemp,fps):
         frame_array.append(img)
     out = cv2.VideoWriter(pathOut, cv2.VideoWriter_fourcc(*'h264'), fps, size)
     #os.system("ffmpeg -i {} -vcodec libx264 {}".format(pathOutTemp,pathOut))
+    os.system("ls")
 
     for i in range(len(frame_array)):
         # writing to a image array
