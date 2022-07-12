@@ -35,8 +35,9 @@ def extractHighlight(request):
 
         # Save files
         data_script.mkdirs(highlightPathFrames)
-        data_script.extract_frames_specific(videoFile,highlightPathFrames,frameNum,fps*3,croppedImg)
-        data_script.combine_frames(highlightPathFrames,highlightOut,highlightOutTemp,fps)
+        data_script.extract_frames_specific(videoFile,highlightPathFrames,frameNum,90,croppedImg)
+        data_script.combine_frames(highlightPathFrames,highlightOut,highlightOutTemp,30)
+
         return HttpResponse(numHighlights) # Sending an success response
     else:
         return HttpResponse("Request method is not a GET")
