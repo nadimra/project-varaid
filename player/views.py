@@ -14,6 +14,7 @@ def datasetHelp(request):
 def extractHighlight(request):
     if request.method == 'GET':
         # Get corner points of image
+        fps = 30
         currentTime = float(request.GET['currentTime'])
         cropTop = int(float(request.GET['cropTop']))
         cropBottom = int(float(request.GET['cropBottom']))
@@ -21,7 +22,7 @@ def extractHighlight(request):
         cropRight = int(float(request.GET['cropRight']))
         croppedImg = [cropTop,cropBottom,cropLeft,cropRight]
 
-        frameNum = int(float(float(currentTime)*float(60)))
+        frameNum = int(float(float(currentTime)*float(fps)))
         
         # Determine frame path
         videoFile = mytags.get_uploaded_broadcast_glob()
@@ -34,8 +35,8 @@ def extractHighlight(request):
 
         # Save files
         data_script.mkdirs(highlightPathFrames)
-        data_script.extract_frames_specific(videoFile,highlightPathFrames,frameNum,240,croppedImg)
-        data_script.combine_frames(highlightPathFrames,highlightOut,highlightOutTemp,60)
+        data_script.extract_frames_specific(videoFile,highlightPathFrames,frameNum,fps*3,croppedImg)
+        data_script.combine_frames(highlightPathFrames,highlightOut,highlightOutTemp,fps)
         return HttpResponse(numHighlights) # Sending an success response
     else:
         return HttpResponse("Request method is not a GET")
