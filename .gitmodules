@@ -1,0 +1,3 @@
+[submodule "modules/handball-detection"]
+	path = modules/handball-detection
+	url = https://github.com/nadimra/handball-detection.git
