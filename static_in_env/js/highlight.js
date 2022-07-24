@@ -19,7 +19,14 @@ const video_player = document.querySelector("#video_player"),
   loader = video_player.querySelector(".loader");
 
   handballBtn = video_player.querySelector(".handballBtn"),
+  handballDecisionMsg = document.querySelector("#handballDisplay"),
+  handballYes = document.querySelector("#yes-handball"),
+  handballNo = document.querySelector("#no-handball"),
+  handballMsg = document.querySelector("#msg-handball"),
 
+handballDecisionMsg.style.display="None"
+handballYes.style.display="None"
+handballNo.style.display="None"
 
 // handball button
 handballBtn.addEventListener("click", () => {
@@ -38,6 +45,17 @@ handballBtn.addEventListener('click',() => {
           },
           success: function( data ) 
           {
+            decision = data['handball_decision']
+            msg = data['msg']
+            handballDecisionMsg.style.display="Block";
+            if (decision == true){
+              handballYes.style.display="Block";
+              handballMsg.innerHTML=msg
+            }else{
+              handballNo.style.display="Block";
+
+            }
+
             //window.location.assign('/player/highlight_'+data)
           }
         })

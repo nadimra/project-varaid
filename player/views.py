@@ -1,10 +1,10 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from . import data_script
 from templatetags import mytags
 from VarAid.settings import MEDIA_URL
 import glob
-from modules.handball_detection import main as handball_detector
+#from modules.handball_detection import main as handball_detector
 
 def main(request):
     return render(request,'player/main.html')
@@ -83,4 +83,8 @@ def getHandball(request):
         decision_path = '.'+MEDIA_URL+'decisions/'
         print(highlight_path)
         hit_hand,handball_decision,handball_part,handball_angle,msg = handball_detector.handball_detection(highlight_path,decision_path)
-    return HttpResponse("Test")
+        data = {
+            'handball_decision': handball_decision,
+            'msg': msg
+        }
+    return JsonResponse(data)
