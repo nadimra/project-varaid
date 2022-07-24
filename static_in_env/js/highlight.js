@@ -21,13 +21,27 @@ const video_player = document.querySelector("#video_player"),
   handballBtn = video_player.querySelector(".handballBtn"),
 
 
-// edit button
+// handball button
 handballBtn.addEventListener("click", () => {
   if (!handballBtn.classList.contains("active")) {
     handballBtn.classList.toggle("active");
   }
 });
 
+handballBtn.addEventListener('click',() => {
+    $.ajax(
+      {
+          type:"GET",
+          url: "getHandball",
+          data:{
+            highlightUrl: window.location.href
+          },
+          success: function( data ) 
+          {
+            //window.location.assign('/player/highlight_'+data)
+          }
+        })
+  });
 
 
 // Play video function

@@ -4,6 +4,7 @@ from . import data_script
 from templatetags import mytags
 from VarAid.settings import MEDIA_URL
 import glob
+from modules.handball_detection import main as handball_detector
 
 def main(request):
     return render(request,'player/main.html')
@@ -73,3 +74,12 @@ def viewHighlight(request,highlight_id):
         'highlightId':highlight_id,
     }
     return render(request,'player/highlight.html',context)
+
+def getHandball(request):
+    if request.method == 'GET':
+        highlight_url = str(request.GET['highlightUrl'])
+        highlight_id = highlight_url.split("/")[-1]
+        highlight_path = '.'+MEDIA_URL+'highlights/'+highlight_id+'/'+highlight_id+'.mp4'
+        print(highlight_path)
+        hit_hand,handball_decision,handball_part,handball_angle,msg = handball_detector.handball_detection(highlight_path)
+    return HttpResponse("Test")
