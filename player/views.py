@@ -4,7 +4,7 @@ from . import data_script
 from templatetags import mytags
 from VarAid.settings import MEDIA_URL
 import glob
-#from modules.handball_detection import main as handball_detector
+from modules.handball_detection import main as handball_detector
 
 def main(request):
     return render(request,'player/main.html')
