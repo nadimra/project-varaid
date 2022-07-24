@@ -45,6 +45,7 @@ handballBtn.addEventListener('click',() => {
           },
           success: function( data ) 
           {
+            handballBtn.classList.toggle("active");
             decision = data['handball_decision']
             msg = data['msg']
             handballDecisionMsg.style.display="Block";
