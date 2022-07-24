@@ -19,6 +19,42 @@
 
 {% if highlightOut %}
 
+
+<div id="accordion" class="mb-5">
+  <div class="card shadow-sm">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          &#9989; Decision: <b>HANDBALL</b>
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card shadow-sm">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          &#9940; Decision: <b>NO HANDBALL</b>
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>
+
 <section>
   <div class="container">
     <div id="video_player">
@@ -52,6 +88,11 @@
               <i class="material-icons auto-play"></i>
             </span>
 
+            <div class="controls-right">
+              <span class="icon">
+                <i class="material-icons handballBtn">waving_hand</i>
+            </span>
+  
 
             <span class="icon">
               <i class="material-icons settingsBtn">settings</i>
@@ -80,6 +121,8 @@
         </div>
       </div>
   </div>
+
+
 </section>
 
 {% endif %}

@@ -294,6 +294,18 @@
     color: greenyellow;
   }
 
+  .controls-right .icon .material-icons.handballBtn {
+    font-size: 24px;
+    transition: 0.3s;
+  }
+
+  .controls-right .icon .handballBtn.active {
+    transform: scale(0.8);
+    color: greenyellow;
+    animation: spin 2s linear infinite;
+    pointer-events: none;
+  }
+
 
 #video_player #settings {
   position: absolute;

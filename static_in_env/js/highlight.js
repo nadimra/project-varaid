@@ -18,6 +18,17 @@ const video_player = document.querySelector("#video_player"),
   tracks = video_player.querySelectorAll("track"),
   loader = video_player.querySelector(".loader");
 
+  handballBtn = video_player.querySelector(".handballBtn"),
+
+
+// edit button
+handballBtn.addEventListener("click", () => {
+  if (!handballBtn.classList.contains("active")) {
+    handballBtn.classList.toggle("active");
+  }
+});
+
+
 
 // Play video function
 function playVideo() {
