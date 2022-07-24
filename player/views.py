@@ -80,6 +80,7 @@ def getHandball(request):
         highlight_url = str(request.GET['highlightUrl'])
         highlight_id = highlight_url.split("/")[-1]
         highlight_path = '.'+MEDIA_URL+'highlights/'+highlight_id+'/'+highlight_id+'.mp4'
+        decision_path = '.'+MEDIA_URL+'decisions/'
         print(highlight_path)
-        hit_hand,handball_decision,handball_part,handball_angle,msg = handball_detector.handball_detection(highlight_path)
+        hit_hand,handball_decision,handball_part,handball_angle,msg = handball_detector.handball_detection(highlight_path,decision_path)
     return HttpResponse("Test")
