@@ -1,3 +1,6 @@
 [submodule "modules/handball_detection"]
 	path = modules/handball_detection
 	url = https://github.com/nadimra/handball_detection.git
+[submodule "modules/vsr"]
+	path = modules/vsr
+	url = https://github.com/nadimra/vsr
