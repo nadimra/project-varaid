@@ -82,7 +82,7 @@ def combine_frames(pathIn, pathOut, pathOutTemp,fps):
         out.write(frame_array[i])
     out.release()
     os.system("ffmpeg -i {} -vcodec libx264 {}".format(pathOutTemp,pathOut))
-
+    os.remove(pathOutTemp)
 
 def check_video_size(path):
     required_height = 560
