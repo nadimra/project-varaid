@@ -109,9 +109,11 @@ def rescale_video(path,filename):
     required_width = 1118
     pathOriginal = '.'+path
     pathNew = '.'+MEDIA_URL+'/main/new_'+filename
+    pathNewTemp = '.'+MEDIA_URL+'/main/new_temp_'+filename
+
     cap = cv2.VideoCapture(pathOriginal)
-    fourcc = cv2.VideoWriter_fourcc(*'H','2','6','4')
-    out = cv2.VideoWriter(pathNew,fourcc, 60, (required_width,required_height))
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    out = cv2.VideoWriter(pathNewTemp,fourcc, 60, (required_width,required_height))
 
     while True:
         ret, frame = cap.read()
@@ -124,6 +126,8 @@ def rescale_video(path,filename):
     cap.release()
     out.release()
     cv2.destroyAllWindows()
+    os.system("ffmpeg -i {} -vcodec libx264 {}".format(pathNewTemp,pathNew))
+    os.remove(pathNewTemp)
 
 def remove_specific_file(file_path):
     file_path = '.' + file_path
