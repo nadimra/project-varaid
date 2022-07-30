@@ -44,17 +44,17 @@ def extractHighlight(request):
         highlightOut = highlightPath+'/'+highlightName +'.mp4'
         highlightOutTemp = highlightPath+'/'+highlightName +'2.mp4'
 
-        modelName = "ModelL"
+        modelName = "ModelC"
         modelPath = MODEL_ZOO[modelName]
 
         # Save files
         data_script.mkdirs(highlightPathFrames)
         data_script.extract_frames_specific(videoFile,highlightPathFrames,frameNum,40,croppedImg)
 
-        #stvsr.main(model_name=modelName,model_path=modelPath,test_dataset_folder=highlightPathFrames,save_folder=highlightPath)
-        #vsrFrames = highlightPathFrames+'_vsr_{}'.format(modelName)
-        #data_script.combine_frames(vsrFrames,highlightOut,highlightOutTemp,60)
-        data_script.combine_frames(highlightPathFrames,highlightOut,highlightOutTemp,30)
+        stvsr.main(model_name=modelName,model_path=modelPath,test_dataset_folder=highlightPathFrames,save_folder=highlightPath)
+        vsrFrames = highlightPathFrames+'_vsr_{}'.format(modelName)
+        data_script.combine_frames(vsrFrames,highlightOut,highlightOutTemp,60)
+        #data_script.combine_frames(highlightPathFrames,highlightOut,highlightOutTemp,30)
 
 
         return HttpResponse(numHighlights) # Sending an success response
