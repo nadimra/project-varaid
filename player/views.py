@@ -7,6 +7,14 @@ import glob
 from modules.handball_detection import main as handball_detector
 from modules.vsr.codes import test as stvsr
 
+MODEL_ZOO= {
+    'ModelC':'./modules/vsr/ckpts/ModelC.pth',
+    'ModelI':'./modules/vsr/ckpts/ModelI.pth',
+    'ModelJ':'./modules/vsr/ckpts/ModelJ.pth',
+    'ModelK':'./modules/vsr/ckpts/ModelK.pth',
+    'ModelL':'./modules/vsr/ckpts/ModelL.pth',
+}
+
 def main(request):
     return render(request,'player/main.html')
 
@@ -36,11 +44,12 @@ def extractHighlight(request):
         highlightOut = highlightPath+'/'+highlightName +'.mp4'
         highlightOutTemp = highlightPath+'/'+highlightName +'2.mp4'
 
-        modelPath = './modules/vsr/ckpts/ModelI.pth'
-        modelName = "ModelI"
+        modelName = "ModelC"
+        modelPath = MODEL_ZOO[modelName]
+
         # Save files
         data_script.mkdirs(highlightPathFrames)
-        data_script.extract_frames_specific(videoFile,highlightPathFrames,frameNum,90,croppedImg)
+        data_script.extract_frames_specific(videoFile,highlightPathFrames,frameNum,20,croppedImg)
         stvsr.main(model_name=modelName,model_path=modelPath,test_dataset_folder=highlightPathFrames,save_folder=highlightPath)
         
         vsrFrames = highlightPathFrames+'_vsr_{}'.format(modelName)
