@@ -62,6 +62,5 @@ def get_current_page(path):
     if last == 'player':
         return 0
     else:
-        print(last)
-        return int(last)
+        return int(last[-1])
 
