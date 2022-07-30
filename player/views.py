@@ -5,6 +5,7 @@ from templatetags import mytags
 from VarAid.settings import MEDIA_URL
 import glob
 from modules.handball_detection import main as handball_detector
+from modules.vsr.codes import test as stvsr
 
 def main(request):
     return render(request,'player/main.html')
@@ -31,13 +32,17 @@ def extractHighlight(request):
         highlightName = 'highlight_'+str(numHighlights)
         highlightPath = '.'+MEDIA_URL+'highlights/'+highlightName
         highlightPathFrames = highlightPath+'/frames'
+
         highlightOut = highlightPath+'/'+highlightName +'.mp4'
         highlightOutTemp = highlightPath+'/'+highlightName +'2.mp4'
+
+        modalPath = './modules/vsr/ckpts/ModelL.pth'
 
         # Save files
         data_script.mkdirs(highlightPathFrames)
         data_script.extract_frames_specific(videoFile,highlightPathFrames,frameNum,90,croppedImg)
-        data_script.combine_frames(highlightPathFrames,highlightOut,highlightOutTemp,30)
+        stvsr.main(model_name="default",model_path=modalPath,test_dataset_folder=highlightPathFrames,save_folder=highlightPath)
+        #data_script.combine_frames(highlightPathFrames,highlightOut,highlightOutTemp,30)
 
         return HttpResponse(numHighlights) # Sending an success response
     else:
