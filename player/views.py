@@ -36,12 +36,12 @@ def extractHighlight(request):
         highlightOut = highlightPath+'/'+highlightName +'.mp4'
         highlightOutTemp = highlightPath+'/'+highlightName +'2.mp4'
 
-        modalPath = './modules/vsr/ckpts/ModelL.pth'
+        modalPath = './modules/vsr/ckpts/ModelI.pth'
 
         # Save files
         data_script.mkdirs(highlightPathFrames)
         data_script.extract_frames_specific(videoFile,highlightPathFrames,frameNum,90,croppedImg)
-        stvsr.main(model_name="default",model_path=modalPath,test_dataset_folder=highlightPathFrames,save_folder=highlightPath)
+        stvsr.main(model_name="ModelI",model_path=modalPath,test_dataset_folder=highlightPathFrames,save_folder=highlightPath)
         #data_script.combine_frames(highlightPathFrames,highlightOut,highlightOutTemp,30)
 
         return HttpResponse(numHighlights) # Sending an success response
