@@ -44,7 +44,7 @@ def extractHighlight(request):
         stvsr.main(model_name=modelName,model_path=modelPath,test_dataset_folder=highlightPathFrames,save_folder=highlightPath)
         
         vsrFrames = highlightPathFrames+'_vsr_{}'.format(modelName)
-        data_script.combine_frames(vsrFrames,highlightOut,highlightOutTemp,30)
+        data_script.combine_frames(vsrFrames,highlightOut,highlightOutTemp,60)
 
         return HttpResponse(numHighlights) # Sending an success response
     else:
