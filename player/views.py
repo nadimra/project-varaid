@@ -44,7 +44,7 @@ def extractHighlight(request):
         highlightOut = highlightPath+'/'+highlightName +'.mp4'
         highlightOutTemp = highlightPath+'/'+highlightName +'2.mp4'
 
-        modelName = "ModelI"
+        modelName = "ModelJ"
         modelPath = MODEL_ZOO[modelName]
 
         # Save files
