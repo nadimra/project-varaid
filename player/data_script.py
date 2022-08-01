@@ -113,7 +113,7 @@ def rescale_video(path,filename):
 
     cap = cv2.VideoCapture(pathOriginal)
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    out = cv2.VideoWriter(pathNewTemp,fourcc, 60, (required_width,required_height))
+    out = cv2.VideoWriter(pathNewTemp,fourcc, 30, (required_width,required_height))
 
     while True:
         ret, frame = cap.read()
