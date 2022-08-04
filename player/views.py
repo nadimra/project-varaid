@@ -44,8 +44,8 @@ def extractHighlight(request):
         highlightOut = highlightPath+'/'+highlightName +'.mp4'
         highlightOutTemp = highlightPath+'/'+highlightName +'2.mp4'
 
-        modelName = "ModelL"
-        modelPath = MODEL_ZOO[modelName]
+        #modelName = "ModelL"
+        #modelPath = MODEL_ZOO[modelName]
 
         # Save files
         data_script.mkdirs(highlightPathFrames)
