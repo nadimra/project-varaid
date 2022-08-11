@@ -4,8 +4,8 @@ from . import data_script
 from templatetags import mytags
 from VarAid.settings import MEDIA_URL
 import glob
-from modules.handball_detection import main as handball_detector
-from modules.vsr.codes import test as stvsr
+#from modules.handball_detection import main as handball_detector
+#from modules.vsr.codes import test as stvsr
 
 MODEL_ZOO= {
     'ModelC':'./modules/vsr/ckpts/ModelC.pth',
@@ -13,6 +13,8 @@ MODEL_ZOO= {
     'ModelJ':'./modules/vsr/ckpts/ModelJ.pth',
     'ModelK':'./modules/vsr/ckpts/ModelK.pth',
     'ModelL':'./modules/vsr/ckpts/ModelL.pth',
+    'ModelQ':'./modules/vsr/ckpts/ModelQ.pth',
+    'ModelZoom':'./modules/vsr/ckpts/ModelZoom.pth',
 }
 
 def main(request):
@@ -49,12 +51,12 @@ def extractHighlight(request):
 
         # Save files
         data_script.mkdirs(highlightPathFrames)
-        data_script.extract_frames_specific(videoFile,highlightPathFrames,frameNum,200,croppedImg)
+        data_script.extract_frames_specific(videoFile,highlightPathFrames,frameNum,10,croppedImg)
 
         #stvsr.main(model_name=modelName,model_path=modelPath,test_dataset_folder=highlightPathFrames,save_folder=highlightPath)
         #vsrFrames = highlightPathFrames+'_vsr_{}'.format(modelName)
         #data_script.combine_frames(vsrFrames,highlightOut,highlightOutTemp,60)
-        data_script.combine_frames(highlightPathFrames,highlightOut,highlightOutTemp,30)
+        data_script.combine_frames(highlightPathFrames,highlightOut,highlightOutTemp,60)
 
 
         return HttpResponse(numHighlights) # Sending an success response
@@ -69,15 +71,15 @@ def extractFrames(request):
         cropLeft = int(float(request.GET['cropLeft']))
         cropRight = int(float(request.GET['cropRight']))
         croppedImg = [cropTop,cropBottom,cropLeft,cropRight]
-        frameNum = int(float(float(currentTime)*float(60)))
+        frameNum = int(float(float(currentTime)*float(30)))
 
         videoFile = mytags.get_uploaded_broadcast_glob()
-        match ='035'
+        match ='031'
         numSectors = len(mytags.get_num_sectors_dataset(match)) + 1
         print(numSectors)
-        savePath = '../project/DatasetCollection/PlayerVids/HR/match{}/{:04}'.format(match,numSectors)
+        savePath = '../project/DatasetCollection/GeneralFootball/HR/match{}/{:04}'.format(match,numSectors)
         data_script.mkdirs(savePath)
-        data_script.extract_frames_specific(videoFile,savePath,frameNum,8,croppedImg)
+        data_script.extract_frames_specific(videoFile,savePath,frameNum,6,croppedImg)
         #data_script.combine_frames(highlightPathFrames,highlightOut,60)
         return HttpResponse(numSectors) # Sending an success response
     else:

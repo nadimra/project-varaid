@@ -17,7 +17,7 @@ def get_num_highlights():
 
 @register.simple_tag
 def get_num_sectors_dataset(match):
-    path = '../project/DatasetCollection/PlayerVids/HR/match{}/'.format(match)
+    path = '../project/DatasetCollection/GeneralFootball/HR/match{}/'.format(match)
     fileList = os.listdir(path) 
     return range(len(fileList))
 
