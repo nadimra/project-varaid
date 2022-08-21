@@ -36,6 +36,7 @@ Finally, users can clear their storage using the **Clear** button in the navigat
 
 # Snapshots
 
+# Code Ownership
 
 
 # Acknowledgements
