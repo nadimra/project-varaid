@@ -14,8 +14,18 @@ The core of this repository is our web app, which utilises submodules [vsr](http
 2. Follow the instructions to setup [handball_detection](https://github.com/nadimra/handball_detection), installing the dependencies and dowloading relevant models.
 3. Follow the instructions to setup [vsr](https://github.com/nadimra/project-varaid), installing the dependencies and dowloading relevant models.
 4. Now install the web app requirements `pip install -r requirements.txt`
-5. If the current hosted machine uses a GPU, then you can simply run `python manage.py runserver` which will host the web app on your localhost. You can alternatively run the web app remotely on a GPU. To do this, navigate to the `settings.py` file in the `VarAid` app directory. Add the GPU machine IP address to the `ALLOWED_HOSTS` variable. Next, run `python manage.py runserver [GPU IP ADDRESS]:8000`.
-6. Open your web browser with the specified link to reach the web app.
+5. Add the following empty directories in the root directory (these directories are placeholders for uploaded video content):
+
+```
+📂 project-varaid
+ ┣ 📂 media
+    ┣ 📂 main
+    ┣ 📂 highlights
+    ┣ 📂 decisions
+```
+
+6. If the current hosted machine uses a GPU, then you can simply run `python manage.py runserver` which will host the web app on your localhost. You can alternatively run the web app remotely on a GPU. To do this, navigate to the `settings.py` file in the `VarAid` app directory. Add the GPU machine IP address to the `ALLOWED_HOSTS` variable. Next, run `python manage.py runserver [GPU IP ADDRESS]:8000`.
+7. Open your web browser with the specified link to reach the web app.
 
 # How do you use VarAid?
 To start, click the **Upload** button to upload a football broadcast. Once uploaded, the video will be shown in the **Main Broadcast** page, which will display a custom built video player with several controls, as shown in Fig.1. Fig.2 displays the workflow of extracting a highlight from the main broadcast. When the user extracts a highlight, a 3 second clip from the current video position is extracted and input into our **Space-Time Video Super Resolution** model to improve the video quality of the clip. 
