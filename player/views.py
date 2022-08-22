@@ -4,8 +4,8 @@ from . import data_script
 from templatetags import mytags
 from VarAid.settings import MEDIA_URL
 import glob
-from modules.handball_detection import main as handball_detector
-from modules.vsr.codes import test as stvsr
+#from modules.handball_detection import main as handball_detector
+#from modules.vsr.codes import test as stvsr
 
 MODEL_ZOO= {
     'ModelC':'./modules/vsr/ckpts/ModelC.pth',

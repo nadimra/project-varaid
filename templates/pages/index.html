@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}
     Upload Broadcast
 {% endblock %}
@@ -9,10 +11,30 @@
 
 
 <h4 class="mb-1">What is VarAid?</h4>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>VarAid is a software built using the Django Python framework which provides referees a user-friendly interface to inspect football broadcasts, and provide them with the tools for ease of decision making, most notably, the usage of STVSR to make video highlights clearer, and an automated handball detector. </p>
 
 <h4 class="mb-1">How do you use VarAid?</h4>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>To start, click the <b>Upload</b> button to upload a football broadcast. Once uploaded, the video will be shown in the <b>Main Broadcast</b> page, which will display a custom built video player with several controls, as shown in Fig.1. Fig.2 displays the workflow of extracting a highlight from the main broadcast. When the user extracts a highlight, a 3 second clip from the current video position is extracted and input into our <b>Space-Time Video Super Resolution</b> model to improve the video quality of the clip. </p>
 
+<br>
+<img src="{% static '/img/video-player-controls.png' %}" id="varaid" style="width:800px;">
+<figcaption>Fig.1: (1) play, (2) skip, (3) autoplay, (4) extract highlights, (5) crop, (6) playback, (7) fullscreen</figcaption>
+</img>
+<br>
+
+<img src="{% static '/img/varaid_gif.gif' %}" id="varaid">
+<figcaption>Fig.2: Example GIF showing a user pausing a main broadcast, adjusting the crop settings, and then extracting the highlight.</figcaption>
+</img>
+<br>
+
+<p>For <b>extracted highlights</b>, referees have the chance to explore this footage in high resolution, using our custom video controls to aid the process. Referees can also use our <b>handball detector</b> tool to automatically detect handballs for highlights. To do this, click the <b>handball</b> control on the video player, and wait for some time for a decision to be processed (~ 1 minute). Our handball detector will output a decision. If a handball is given, then an image of the offence is extracted, with the pose estimation and object detector information being shown in the image, along with the angle of the arm that the ball collided with (Note. If a previous offence is outputted, make sure to clear your cache and try again). An example of the handball tool in action is displayed in Fig.3. </p>
+
+<br>
+<img src="{% static '/img/varaid-handball.PNG' %}" id="varaid" style="width:800px;">
+<figcaption>Fig.3: Output from handball detector.</figcaption>
+</img>
+<br>
+
+<p>Finally, users can clear their storage using the <b>clear</b> button in the navigation menu, which will automatically remove the highlights and main broadcast from your local drive.</p>
 
 {% endblock %}
