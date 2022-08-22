@@ -4,8 +4,8 @@ from . import data_script
 from templatetags import mytags
 from VarAid.settings import MEDIA_URL
 import glob
-#from modules.handball_detection import main as handball_detector
-#from modules.vsr.codes import test as stvsr
+from modules.handball_detection import main as handball_detector
+from modules.vsr.codes import test as stvsr
 
 MODEL_ZOO= {
     'ModelC':'./modules/vsr/ckpts/ModelC.pth',
@@ -101,7 +101,7 @@ def getHandball(request):
         highlight_id = highlight_url.split("/")[-1]
         highlight_path = '.'+MEDIA_URL+'highlights/'+highlight_id+'/'+highlight_id+'.mp4'
         decision_path = '.'+MEDIA_URL+'decisions/'
-        print(highlight_path)
+        data_script.remove_decision()
         hit_hand,handball_decision,handball_part,handball_angle,msg = handball_detector.handball_detection(highlight_path,decision_path)
         data = {
             'handball_decision': handball_decision,
