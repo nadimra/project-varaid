@@ -53,7 +53,8 @@ handballBtn.addEventListener('click',() => {
             if (decision == true){
               handballYes.style.display="Block";
               handballMsg.innerHTML=msg;
-              handballImg.src = "{% media_url %}decisions/decision.png";
+              handballImg.src = "";
+              //handballImg.src = "{% media_url %}decisions/decision.png";
             }else{
               handballNo.style.display="Block";
 
