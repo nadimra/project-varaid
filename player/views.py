@@ -8,13 +8,8 @@ from modules.handball_detection import main as handball_detector
 from modules.vsr.codes import test as stvsr
 
 MODEL_ZOO= {
-    'ModelC':'./modules/vsr/ckpts/ModelC.pth',
-    'ModelI':'./modules/vsr/ckpts/ModelI.pth',
-    'ModelJ':'./modules/vsr/ckpts/ModelJ.pth',
-    'ModelK':'./modules/vsr/ckpts/ModelK.pth',
-    'ModelL':'./modules/vsr/ckpts/ModelL.pth',
     'ModelQ':'./modules/vsr/ckpts/ModelQ.pth',
-    'ModelZoom':'./modules/vsr/ckpts/ModelZoom.pth',
+    'ModelR':'./modules/vsr/ckpts/ModelR.pth',
 }
 
 def main(request):
@@ -47,19 +42,29 @@ def extractHighlight(request):
         highlightOut = highlightPath+'/'+highlightName +'.mp4'
         highlightOutTemp = highlightPath+'/'+highlightName +'2.mp4'
 
-        #modelName = "ModelL"
-        #modelPath = MODEL_ZOO[modelName]
-        print("Current size: "+str(currentSize))
-
         # Save files
         data_script.mkdirs(highlightPathFrames)
         data_script.extract_frames_specific(videoFile,highlightPathFrames,frameNum,120,croppedImg)
 
+        if currentSize == 100:
+            data_script.combine_frames(highlightPathFrames,highlightOut,highlightOutTemp,30)
+        elif currentSize == 50:
+            modelName = "ModelR"
+            modelPath = MODEL_ZOO[modelName]
+            stvsr.main(model_name=modelName,model_path=modelPath,test_dataset_folder=highlightPathFrames,save_folder=highlightPath)
+            vsrFrames = highlightPathFrames+'_vsr_{}'.format(modelName)
+            data_script.combine_frames(vsrFrames,highlightOut,highlightOutTemp,60)
+        elif currentSize == 25:
+            modelName = "ModelQ"
+            modelPath = MODEL_ZOO[modelName]
+            stvsr.main(model_name=modelName,model_path=modelPath,test_dataset_folder=highlightPathFrames,save_folder=highlightPath)
+            vsrFrames = highlightPathFrames+'_vsr_{}'.format(modelName)
+            data_script.combine_frames(vsrFrames,highlightOut,highlightOutTemp,60)
+
         #stvsr.main(model_name=modelName,model_path=modelPath,test_dataset_folder=highlightPathFrames,save_folder=highlightPath)
         #vsrFrames = highlightPathFrames+'_vsr_{}'.format(modelName)
         #data_script.combine_frames(vsrFrames,highlightOut,highlightOutTemp,60)
-        data_script.combine_frames(highlightPathFrames,highlightOut,highlightOutTemp,30)
-
+        #data_script.combine_frames(highlightPathFrames,highlightOut,highlightOutTemp,30)
 
         return HttpResponse(numHighlights) # Sending an success response
     else:
