@@ -18,53 +18,6 @@ const video_player = document.querySelector("#video_player"),
   tracks = video_player.querySelectorAll("track"),
   loader = video_player.querySelector(".loader");
 
-  handballBtn = video_player.querySelector(".handballBtn"),
-  handballDecisionMsg = document.querySelector("#handballDisplay"),
-  handballYes = document.querySelector("#yes-handball"),
-  handballNo = document.querySelector("#no-handball"),
-  handballMsg = document.querySelector("#msg-handball"),
-
-handballDecisionMsg.style.display="None"
-handballYes.style.display="None"
-handballNo.style.display="None"
-
-// handball button
-handballBtn.addEventListener("click", () => {
-  if (!handballBtn.classList.contains("active")) {
-    handballBtn.classList.toggle("active");
-  }
-});
-
-handballBtn.addEventListener('click',() => {
-    $.ajax(
-      {
-          type:"GET",
-          url: "getHandball",
-          data:{
-            highlightUrl: window.location.href
-          },
-          success: function( data ) 
-          {
-            handballBtn.classList.toggle("active");
-            decision = data['handball_decision']
-            msg = data['msg']
-            handballDecisionMsg.style.display="Block";
-            if (decision == true){
-              handballYes.style.display="Block";
-              handballMsg.innerHTML=msg;
-              //handballImg.src = "{% media_url %}decisions/decision.png";
-              $('#decision-output').prop('src', mediaUrl + "/decisions/decision.png"); //change image src
-
-            }else{
-              handballNo.style.display="Block";
-
-            }
-
-            //window.location.assign('/player/highlight_'+data)
-          }
-        })
-  });
-
 
 // Play video function
 function playVideo() {
