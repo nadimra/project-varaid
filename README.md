@@ -47,7 +47,14 @@ Finally, users can clear their storage using the **Clear** button in the navigat
 # Snapshots
 
 # Code Ownership
+In this section, we highlight the code that we ammended in this thesis based on other peoples work. If the code is based on a network, then it can be implied that the files from the original open source repository were not changed unless mentioned in the following list. If any directories/files are not included in this list which are not part of an open source network, then it can be implied that it is code that I own individually.
 
-
+- The video player design in the VarAid web app is based off [this](https://stechwebapp.blogspot.com/2021/10/how-to-create-custom-video-player-using-javascript.html) link. Additional functionality was added to this player, including the ability to use the cropButton, crop draggable item, adjust crop sizes, and the ability to extract highlights. The main adjustments in the design and functionality can be found in `templates/player/main.html` and `static_in_env/js/video.js`.
+- The design of the web app is based off [this](https://colorlib.com/wp/template/bootstrap-sidebar-03/) template. We utilize this template as a base design, and adjust it to suit our content.
+- Inside submodule vsr, most content is utilized from the [Zooming Slow-Mo network](https://github.com/Mukosame/Zooming-Slow-Mo-CVPR-2020). Inside `vsr/codes`, we create several test files for our own dataset labelled `test_[].py`. We create several data loaders for our dataset in `data/FootballVids_dataset.py` and `data/PlayerVids_dataset.py`. Inside `models/VideoSR_base_model.py`, we update the base model for the Zooming Slow-Mo network, which feeds in segmentation information for training. Inside `models/modules/Sakuya_arch.py`, we make adjustments to the network architecture suited for our dataset.
+- Inside the submodule handball_detection, we utilize networks [HRNet](https://github.com/stefanopini/simple-HRNet) and [YOLOv5](https://github.com/ultralytics/yolov5):
+  - Inside the `project_yolo5` directory, we ammend the file `detect_simple.py` to keep track of ball objects and deflections, and `utils/plots.py` to draw a ball trajectory and use kalman filters to filter the deflected frames. 
+  - Inside the `project_HRNet` directory, we ammend the file `scripts/live_demo.py` so that it takes in additional parameters for information about the deflected frames, and we adjust the code so that it loops through each detected person and applies the handball collider algorithm, which can be found in `misc/handball_collider.py`.
+  
 # Acknowledgements
-Our code is built on [HRNet](https://github.com/stefanopini/simple-HRNet) and [YOLOv5](https://github.com/ultralytics/yolov5). We thank the authors for sharing their codes.
+Our code utilizes [Zooming Slow-Mo network](https://github.com/Mukosame/Zooming-Slow-Mo-CVPR-2020), [HRNet](https://github.com/stefanopini/simple-HRNet), [YOLOv5](https://github.com/ultralytics/yolov5). We thank the authors for sharing their codes.
