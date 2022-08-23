@@ -12,7 +12,7 @@ The core of this repository is our web app, which utilises submodules [vsr](http
 # Setup
 1. `git clone https://github.com/nadimra/project-varaid` 
 2. Follow the instructions to setup [handball_detection](https://github.com/nadimra/handball_detection), installing the dependencies and dowloading relevant models.
-3. Follow the instructions to setup [vsr](https://github.com/nadimra/project-varaid), installing the dependencies and dowloading relevant models.
+3. Follow the instructions to setup [vsr](https://github.com/nadimra/vsr), installing the dependencies and dowloading relevant models.
 4. Now install the web app requirements `pip install -r requirements.txt`
 5. Add the following empty directories in the root directory (these directories are placeholders for uploaded video content):
 
