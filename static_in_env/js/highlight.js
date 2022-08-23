@@ -23,7 +23,6 @@ const video_player = document.querySelector("#video_player"),
   handballYes = document.querySelector("#yes-handball"),
   handballNo = document.querySelector("#no-handball"),
   handballMsg = document.querySelector("#msg-handball"),
-  handballImg = document.querySelector("#decision-output"),
 
 handballDecisionMsg.style.display="None"
 handballYes.style.display="None"
@@ -53,8 +52,9 @@ handballBtn.addEventListener('click',() => {
             if (decision == true){
               handballYes.style.display="Block";
               handballMsg.innerHTML=msg;
-              handballImg.src = "";
-              handballImg.src = "{% media_url %}decisions/decision.png";
+              //handballImg.src = "{% media_url %}decisions/decision.png";
+              $('#decision-output').prop('src', "{% media_url %}decisions/decision.png"); //change image src
+
             }else{
               handballNo.style.display="Block";
 
