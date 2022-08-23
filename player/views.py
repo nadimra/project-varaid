@@ -32,6 +32,7 @@ def extractHighlight(request):
         cropBottom = int(float(request.GET['cropBottom']))
         cropLeft = int(float(request.GET['cropLeft']))
         cropRight = int(float(request.GET['cropRight']))
+        currentSize = int(float(request.GET['currentSize']))
         croppedImg = [cropTop,cropBottom,cropLeft,cropRight]
 
         frameNum = int(float(float(currentTime)*float(fps)))
@@ -48,6 +49,7 @@ def extractHighlight(request):
 
         #modelName = "ModelL"
         #modelPath = MODEL_ZOO[modelName]
+        print("Current size: "+currentSize)
 
         # Save files
         data_script.mkdirs(highlightPathFrames)

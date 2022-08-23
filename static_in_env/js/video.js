@@ -27,6 +27,7 @@ const video_player = document.querySelector("#video_player"),
   tracks = video_player.querySelectorAll("track"),
   loader = video_player.querySelector(".loader");
 
+current_size = "100"
 
 // Play video function
 function playVideo() {
@@ -251,6 +252,7 @@ sizes.forEach((event) => {
     removeActiveClasses(sizes);
     event.classList.add("active");
     let size = event.getAttribute("data-size");
+    current_size = size;
     console.log("Current crop border: " + $("#crop-video").height());
     console.log("Current crop border: " + $("#crop-video").width());
     console.log("Current test container: " + $("#test-video").width());
@@ -384,6 +386,7 @@ editBtn.addEventListener('click',() => {
             cropBottom: cropBounds[1]+4,
             cropLeft: cropBounds[2]+4,
             cropRight: cropBounds[3]+4,
+            currentSize: current_size,
           },
           success: function( data ) 
           {
