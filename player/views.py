@@ -51,13 +51,13 @@ def extractHighlight(request):
         elif currentSize == 50:
             modelName = "ModelR"
             modelPath = MODEL_ZOO[modelName]
-            stvsr.main(model_name=modelName,model_path=modelPath,test_dataset_folder=highlightPathFrames,save_folder=highlightPath)
+            stvsr.main(model_name=modelName,model_path=modelPath,test_dataset_folder=highlightPathFrames,save_folder=highlightPath,scale=2)
             vsrFrames = highlightPathFrames+'_vsr_{}'.format(modelName)
             data_script.combine_frames(vsrFrames,highlightOut,highlightOutTemp,60)
         elif currentSize == 25:
             modelName = "ModelQ"
             modelPath = MODEL_ZOO[modelName]
-            stvsr.main(model_name=modelName,model_path=modelPath,test_dataset_folder=highlightPathFrames,save_folder=highlightPath)
+            stvsr.main(model_name=modelName,model_path=modelPath,test_dataset_folder=highlightPathFrames,save_folder=highlightPath,scale=4)
             vsrFrames = highlightPathFrames+'_vsr_{}'.format(modelName)
             data_script.combine_frames(vsrFrames,highlightOut,highlightOutTemp,60)
 
