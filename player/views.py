@@ -49,7 +49,7 @@ def extractHighlight(request):
 
         #modelName = "ModelL"
         #modelPath = MODEL_ZOO[modelName]
-        print("Current size: "+currentSize)
+        print("Current size: "+str(currentSize))
 
         # Save files
         data_script.mkdirs(highlightPathFrames)
