@@ -50,8 +50,6 @@ Finally, users can clear their storage using the **Clear** button in the navigat
 
 ![varaid-handball-demo](https://user-images.githubusercontent.com/36157933/187311433-dbd9fe53-24d9-441b-b041-4dfc864cf9af.PNG)
 
-![varaid_gif](https://user-images.githubusercontent.com/36157933/187311505-a03002dc-1901-4fbb-99e5-b51f63099266.gif)
-
 # Code Ownership
 In this section, we highlight the code that we ammended in this thesis based on other peoples work. If the code is based on a network, then it can be implied that the files from the original open source repository were not changed unless mentioned in the following list. If any directories/files are not included in this list which are not part of an open source network, then it can be implied that it is code that I own individually.
 
