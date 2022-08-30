@@ -3,7 +3,7 @@
 # VarAid
 **VarAid** is the a software built using the Django Python framework which provides referees a user-friendly interface to inspect football broadcasts, 
 and provide them with the tools for ease of decision making, most notably, the usage of STVSR to make video highlights clearer, and an automated handball detector. 
-The core of this repository is our web app, which utilises submodules [vsr](https://github.com/nadimra/project-varaid) and [handball_detection](https://github.com/nadimra/handball_detection).
+The core of this repository is our web app, which utilises submodules [vsr](https://github.com/nadimra/vsr) and [handball_detection](https://github.com/nadimra/handball_detection).
 
 # Prerequisites
 1. For full functionality, run this web app on localhost on the Mozilla Firefox browser.
@@ -46,6 +46,9 @@ For **extracted highlights**, referees have the chance to explore this footage i
 Finally, users can clear their storage using the **Clear** button in the navigation menu, which will automatically remove the highlights and main broadcast from your local drive.
 
 # Snapshots
+![varaid-home](https://user-images.githubusercontent.com/36157933/187311430-410a9976-a646-44ba-be3c-33d7071c3f42.PNG)
+
+![varaid-handball-demo](https://user-images.githubusercontent.com/36157933/187311433-dbd9fe53-24d9-441b-b041-4dfc864cf9af.PNG)
 
 # Code Ownership
 In this section, we highlight the code that we ammended in this thesis based on other peoples work. If the code is based on a network, then it can be implied that the files from the original open source repository were not changed unless mentioned in the following list. If any directories/files are not included in this list which are not part of an open source network, then it can be implied that it is code that I own individually.
